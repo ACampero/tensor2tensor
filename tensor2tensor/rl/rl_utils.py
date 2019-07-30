@@ -276,9 +276,12 @@ def full_game_name(short_name):
   Returns:
     full game name e.g. "CrazyClimberNoFrameskip-v4"
   """
-  camel_game_name = misc_utils.snakecase_to_camelcase(short_name)
-  full_name = camel_game_name + ATARI_GAME_MODE
-  return full_name
+  if short_name[0:4] == 'VGDL':
+    return short_name
+  else: 
+    camel_game_name = misc_utils.snakecase_to_camelcase(short_name)
+    full_name = camel_game_name + ATARI_GAME_MODE
+    return full_name
 
 
 def should_apply_max_and_skip_env(hparams):

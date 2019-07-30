@@ -25,6 +25,14 @@ import numpy as np
 from PIL import Image
 import tensorflow as tf
 
+import os,sys,inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+parentdir = os.path.dirname(parentdir)
+parentdir = os.path.dirname(parentdir)
+sys.path.insert(0,parentdir)
+from VGDLEnvAndres import VGDLEnvAndres
+
 
 class StickyActionEnv(gym.Wrapper):
   """Based on openai/atari-reset implementation."""
@@ -215,8 +223,12 @@ def make_gym_env(name,
   Returns:
     An instance of `gym.Env` or `gym.Wrapper`.
   """
-  env = gym.make(name)
-  return gym_env_wrapper(env, rl_env_max_episode_steps, maxskip_env,
+  if name[0:4] == 'VGDL':
+    env = VGDLEnvAndres(name[5:])
+    return env
+  else: 
+    env = gym.make(name)
+    return gym_env_wrapper(env, rl_env_max_episode_steps, maxskip_env,
                          rendered_env, rendered_env_resize_to, sticky_actions,
                          output_dtype)
 
