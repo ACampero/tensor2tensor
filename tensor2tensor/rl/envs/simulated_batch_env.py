@@ -24,6 +24,7 @@ from __future__ import print_function
 
 import copy
 import os
+import pdb
 
 import numpy as np
 
@@ -57,6 +58,7 @@ class HistoryBuffer(object):
     self.batch_size = batch_size
     self._observ_dtype = observ_dtype
     initial_shape = (batch_size, num_initial_frames) + observ_shape
+    #pdb.set_trace()
     self._initial_frames = tf.py_func(
         initial_frame_chooser, [tf.constant(batch_size)], observ_dtype
     )

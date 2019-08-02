@@ -21,11 +21,12 @@ from __future__ import print_function
 
 from absl import logging
 import grpc
-from grpc import loas2
+#ANDRES Commented following lines
+#from grpc import loas2
 import gym
 import numpy as np
-from tensor2tensor.envs import env_service_pb2
-from tensor2tensor.envs import env_service_pb2_grpc
+#from tensor2tensor.envs import env_service_pb2
+#from tensor2tensor.envs import env_service_pb2_grpc
 from tensor2tensor.envs import env_service_serialization as serialization
 
 

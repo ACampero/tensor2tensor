@@ -32,7 +32,7 @@ import os
 import pprint
 import random
 import time
-
+import pdb
 import six
 
 from tensor2tensor.bin import t2t_trainer  # pylint: disable=unused-import
@@ -313,7 +313,7 @@ def training_loop(hparams, output_dir, report_fn=None, report_metric=None):
         env, data_dir, directories["world_model"], hparams,
         world_model_steps_num, epoch
     )
-
+    #pdb.set_trace()
     # Train agent
     log("Training policy in simulated environment.")
     train_agent(env, learner, directories["world_model"], hparams, epoch)

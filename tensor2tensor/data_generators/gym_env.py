@@ -36,7 +36,7 @@ from tensor2tensor.utils import misc_utils
 from tensor2tensor.utils import registry
 
 import tensorflow as tf
-
+import pdb
 
 Frame = collections.namedtuple(
     # Order of elements reflects time progression within a frame.
@@ -619,12 +619,13 @@ class T2TGymEnv(T2TEnv):
             base_env_name, rl_env_max_episode_steps=rl_env_max_episode_steps,
             maxskip_env=maxskip_envs, sticky_actions=sticky_actions)
         for _ in range(self.batch_size)]
-
+    #pdb.set_trace()
     # max_num_noops works only with atari envs.
-    if max_num_noops > 0:
-      assert self._envs[0].unwrapped.get_action_meanings()[
-          self.noop_action
-      ] == "NOOP"
+    ## Commented by Andres
+    #if max_num_noops > 0:
+    #  assert self._envs[0].unwrapped.get_action_meanings()[
+    #      self.noop_action
+    #  ] == "NOOP"
     self.max_num_noops = max_num_noops
 
     orig_observ_space = self._envs[0].observation_space
@@ -689,6 +690,7 @@ class T2TGymEnv(T2TEnv):
 
   # TODO(afrozm): Why is this separated out from _preprocess_observations?
   def _derive_observation_space(self, orig_observ_space):
+    #pdb.set_trace()
     height, width, channels = orig_observ_space.shape
     if self.grayscale:
       channels = 1
@@ -709,6 +711,7 @@ class T2TGymEnv(T2TEnv):
 
   def _preprocess_observations(self, observations):
     # TODO(afrozm): Clean this up.
+    #pdb.set_trace()
     if not self.should_derive_observation_space:
       return observations
     return self._session.obj.run(

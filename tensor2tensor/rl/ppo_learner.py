@@ -21,6 +21,7 @@ from __future__ import print_function
 
 import math
 import os
+import pdb
 
 from tensor2tensor.layers import common_layers
 from tensor2tensor.models.research.rl import get_policy
@@ -244,6 +245,7 @@ def _run_train(ppo_hparams,
     num_completed_iterations = num_target_iterations - restarter.steps_to_go
     with restarter.training_loop():
       for epoch_index in range(num_completed_iterations, num_target_iterations):
+        #pdb.set_trace()
         summary = sess.run(train_summary_op)
         if summary_writer:
           summary_writer.add_summary(summary, epoch_index)

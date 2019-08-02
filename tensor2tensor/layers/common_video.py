@@ -428,10 +428,10 @@ def py_gif_summary(tag, images, max_outputs, fps, return_summary_value=False):
     try:
       image_summ.encoded_image_string = _encode_gif(images[i], fps)
     except (IOError, OSError) as e:
-      tf.logging.warning(
-          "Unable to encode images to a gif string because either ffmpeg is "
-          "not installed or ffmpeg returned an error: %s. Falling back to an "
-          "image summary of the first frame in the sequence.", e)
+      #tf.logging.warning(
+      #    "Unable to encode images to a gif string because either ffmpeg is "
+      #    "not installed or ffmpeg returned an error: %s. Falling back to an "
+      #    "image summary of the first frame in the sequence.", e)
       try:
         from PIL import Image  # pylint: disable=g-import-not-at-top
         import io  # pylint: disable=g-import-not-at-top

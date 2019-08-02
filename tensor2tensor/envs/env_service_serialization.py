@@ -21,7 +21,8 @@ from __future__ import print_function
 
 import gym
 import numpy as np
-from tensor2tensor.envs import env_service_pb2
+#ANDRES Commented
+#from tensor2tensor.envs import env_service_pb2
 from tensorflow.python.framework import tensor_util  # pylint: disable=g-direct-tensorflow-import
 
 
