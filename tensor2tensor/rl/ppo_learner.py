@@ -93,7 +93,7 @@ class PPOLearner(PolicyLearner):
                   epoch=epoch if simulated else -1,
                   frame_stack_size=self.frame_stack_size,
                   force_beginning_resets=simulated))
-
+        #pdb.set_trace()
         if num_env_steps is None:
           iteration_increment = hparams.epochs_num
         else:
@@ -234,7 +234,6 @@ def _run_train(ppo_hparams,
   global_step = tf.train.get_or_create_global_step()
   with tf.control_dependencies([tf.assign_add(global_step, 1)]):
     train_summary_op = tf.identity(train_summary_op)
-
   with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     for initializer in initializers:
@@ -246,9 +245,10 @@ def _run_train(ppo_hparams,
     with restarter.training_loop():
       for epoch_index in range(num_completed_iterations, num_target_iterations):
         #pdb.set_trace()
-        summary = sess.run(train_summary_op)
-        if summary_writer:
-          summary_writer.add_summary(summary, epoch_index)
+        #ANDRES: Commented 3 lines
+        #summary = sess.run(train_summary_op)
+        #if summary_writer:
+        #  summary_writer.add_summary(summary, epoch_index)
 
         if (ppo_hparams.eval_every_epochs and
             epoch_index % ppo_hparams.eval_every_epochs == 0):

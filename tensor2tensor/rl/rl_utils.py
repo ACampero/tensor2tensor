@@ -228,18 +228,18 @@ def evaluate_world_model(
       real_obs = decode_real_obs(i + 1)
       append_debug_frame_batch(sim_obs, real_obs, sim_cum_rewards,
                                real_cum_rewards, sim_rewards, real_rewards)
+    #Andres commented this lines
+    #for debug_frames in np.stack(debug_frame_batches, axis=1):
+    #  debug_frame = None
+    #  for debug_frame in debug_frames:
+    #    video_writer.write(debug_frame)
 
-    for debug_frames in np.stack(debug_frame_batches, axis=1):
-      debug_frame = None
-      for debug_frame in debug_frames:
-        video_writer.write(debug_frame)
+    #  if debug_frame is not None:
+    #    # Append two black frames for aesthetics.
+    #    for _ in range(2):
+    #      video_writer.write(np.zeros_like(debug_frame))
 
-      if debug_frame is not None:
-        # Append two black frames for aesthetics.
-        for _ in range(2):
-          video_writer.write(np.zeros_like(debug_frame))
-
-  video_writer.finish_to_disk()
+  #video_writer.finish_to_disk()
 
   return {
       "reward_accuracy/at_{}".format(length): np.mean(reward_accuracies)
